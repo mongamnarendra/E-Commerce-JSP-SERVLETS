@@ -30,16 +30,17 @@ public class LoginServlet extends HttpServlet {
 		
 		if(loginStatus) {
 			HttpSession session = req.getSession();
-			session.setAttribute("userEmail", email);
-			List<Product> productList;
+			int userId=0;
 			try {
-				productList = ProductDao.getAllProducts();
-				req.setAttribute("products", productList);
-				req.getRequestDispatcher("home.jsp").forward(req, res);
-			} catch (Exception e) {
-				e.printStackTrace();
+				userId = ProductDao.getByEmail(email);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("error");
 			}
 			
+			session.setAttribute("userId", userId);
+			 res.sendRedirect("homeservlet");
 		}
 		else {
 			System.out.println(loginStatus);

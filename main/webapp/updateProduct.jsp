@@ -36,13 +36,13 @@
 
     .form-container h2 {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         color: #00ffe7;
         text-shadow: 0 0 10px #00ffe7aa;
     }
 
     .form-group {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
     }
 
     .form-group label {
@@ -61,14 +61,20 @@
         color: #fff;
         font-size: 1rem;
         outline: none;
-        box-shadow: inset 0 0 5px rgba(0,255,231,0.2);
-        transition: 0.3s ease;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-        box-shadow: 0 0 8px #00ffe7;
-        background: rgba(255, 255, 255, 0.15);
+    .form-group input[type="file"] {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .preview-img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 1rem auto;
+        border-radius: 10px;
+        box-shadow: 0 0 15px #00ffe7aa;
     }
 
     .btn-submit {
@@ -90,14 +96,7 @@
         color: #1e1e2f;
         box-shadow: 0 0 20px #00ffe7;
     }
-
-    @media (max-width: 480px) {
-        .form-container {
-            padding: 1.5rem 2rem;
-        }
-    }
 </style>
-
 </head>
 <body>
 
@@ -112,25 +111,51 @@
 
 <div class="form-container">
     <h2>Update Product</h2>
-    <form action="UpdateServlet" method="post">
-        <!-- Hidden field for product ID -->
+    <form action="UpdateServlet" method="post" enctype="multipart/form-data">
         <input type="hidden" name="productId" value="<%= p.getId() %>">
 
         <div class="form-group">
-            <label>Enter Product Name:</label>
+            <label>Product Name:</label>
             <input type="text" name="productName" value="<%= p.getProductName() %>" required>
         </div>
+
         <div class="form-group">
-            <label>Enter Product Price:</label>
+            <label>Product Price:</label>
             <input type="text" name="productPrice" value="<%= p.getProductPrice() %>" required>
         </div>
+
         <div class="form-group">
-            <label>Enter Product Description:</label>
+            <label>Product Description:</label>
             <textarea name="productDesc" rows="4" required><%= p.getProductDesc() %></textarea>
         </div>
+
+        <div class="form-group">
+            <label>Current Product Image:</label>
+            <img src="<%= p.getProductImage() %>" alt="Current Image" class="preview-img">
+        </div>
+
+        <div class="form-group">
+            <label>Upload New Image:</label>
+            <input type="file" name="productImage" accept="image/*" onchange="previewImage(event)">
+        </div>
+
+        <img id="newPreview" class="preview-img" style="display:none;">
+
         <button type="submit" class="btn-submit">Update Product</button>
     </form>
 </div>
+
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            const output = document.getElementById('newPreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
 <%
     }
