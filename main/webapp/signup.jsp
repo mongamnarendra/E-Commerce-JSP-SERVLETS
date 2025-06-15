@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1e1e2f, #252537);
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #eaeaea;
+    }
+
+    .signup-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .signup-container h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #00ffe7;
+        text-shadow: 0 0 10px #00ffe7aa;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+        box-shadow: inset 0 0 5px rgba(0,255,231,0.2);
+        transition: 0.3s ease;
+    }
+
+    .form-group input:focus {
+        box-shadow: 0 0 8px #00ffe7;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 0.8rem;
+        background: transparent;
+        color: #00ffe7;
+        border: 2px solid #00ffe7;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 0 10px #00ffe7aa;
+    }
+
+    .btn-submit:hover {
+        background: #00ffe7;
+        color: #1e1e2f;
+        box-shadow: 0 0 20px #00ffe7;
+    }
+
+    @media (max-width: 480px) {
+        .signup-container {
+            padding: 1.5rem 2rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h2>Create Account</h2>
+    <form action="SignUpServlet" method="post">
+        <div class="form-group">
+            <label>Enter User Name:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+            <label>Enter User Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Enter User Password:</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn-submit">Sign Up</button>
+    </form>
+</div>
+
+</body>
+</html>
