@@ -1,0 +1,112 @@
+E-Commerce Web Application (JSP & Servlets)
+Overview
+
+This project is a full-stack e-commerce web application developed using Java Servlets, JSP (JavaServer Pages), and JDBC (Java Database Connectivity). It provides a platform for users to browse products, manage their cart, place orders, and more.
+
+Technologies Used
+
+Backend: Java, Servlets, JDBC
+
+Frontend: HTML, CSS, JavaScript
+Database: MySQL
+
+Server: Apache Tomcat
+
+IDE: Eclipse
+
+ Key Features
+
+User Authentication: Secure login/logout functionality with encrypted passwords.
+
+Product Management: Browse products by categories and search functionality.
+
+Cart Management: Add products to the cart, update quantities, and remove items.
+
+Order Management: Place orders with multiple products. Track order status (pending, shipped, delivered).
+
+User Profile: Update personal information. View order history and track previous purchases.
+
+<h1>Setup Instructions</h1>
+
+Clone the repository:
+
+git clone https://github.com/mongamnarendra/E-Commerce-JSP-SERVLETS.git
+
+
+Set up MySQL:
+
+Create a new database named ecommerce_db.
+
+Execute SQL scripts in the database-scripts folder to create tables and insert data.
+
+Configure database connection:
+
+Update the database connection settings in the project to match your local MySQL configuration.
+
+Build and run the application:
+
+Use an IDE like Eclipse or IntelliJ.
+
+Deploy the application to Apache Tomcat.
+
+ Project Structure
+E-Commerce-JSP-SERVLETS/
+├── src/
+│   ├── com/
+│   │   ├── controller/
+│   │   ├── dao/
+│   │   ├── model/
+│   │   └── util/
+├── web/
+│   ├── WEB-INF/
+│   ├── css/
+│   ├── js/
+│   └── images/
+└── database-scripts/
+    ├── create_tables.sql
+    └── insert_data.sql
+
+
+⚡ Database & JDBC Integration
+
+This project uses JDBC (Java Database Connectivity) to interact with a MySQL database for all backend operations. The application performs CRUD operations (Create, Read, Update, Delete) through JDBC, demonstrating hands-on SQL experience.
+
+Key JDBC functionalities implemented:
+
+Database Connection:
+
+Used DriverManager to establish connections to MySQL.
+
+Connection pooling handled for efficient resource management.
+
+CRUD Operations:
+
+Create: Insert new users, products, and orders into the database.
+
+Read: Fetch product details, user profiles, and order history using SQL SELECT queries.
+
+Update: Update user information, cart quantities, and order status.
+
+Delete: Remove items from cart or delete user requests.
+
+Prepared Statements:
+
+Used PreparedStatement for secure query execution to prevent SQL injection attacks.
+
+Transaction Management:
+
+Ensured atomic operations during order placement (multiple inserts/updates) to maintain database integrity.
+
+Example: JDBC usage for fetching products
+
+Connection conn = DBConnection.getConnection();
+String sql = "SELECT * FROM products";
+PreparedStatement pst = conn.prepareStatement(sql);
+ResultSet rs = pst.executeQuery();
+while(rs.next()) {
+    Product p = new Product();
+    p.setId(rs.getInt("id"));
+    p.setName(rs.getString("name"));
+    p.setPrice(rs.getDouble("price"));
+    productList.add(p);
+}
